@@ -69,12 +69,12 @@ Examples:
 - management
 - networking
 - web
-- api
+- `api`
 - frontend
 - standards
 - templates
 
-This defines what within the system the repo is responsible for.
+This defines what within the system the repository is responsible for.
 
 ---
 
@@ -83,7 +83,7 @@ The target platform or environment.
 Only include when the repository is explicitly platform-specific or has parallel implementations.
 
 Examples:
-- azure
+- `azure`
 - aws
 - gcp
 - onprem
@@ -192,7 +192,7 @@ Only add platform or tool suffixes when required.
 
 - All new repositories must follow this standard
 - Only approved repo-type values may be used
-- Exceptions must be documented in the repository README
+- Exceptions must be documented in the repository readme
 
 ---
 
@@ -203,10 +203,10 @@ Only add platform or tool suffixes when required.
 - Reusable module -> module-*
 - Docs only -> docs-*
 - Pipelines -> pipeline-*
-- Multi-layer repo -> solution-*
+- Multi-layer repository -> solution-*
 
 ---
 
 ## Summary
-Repository names should describe what the repo is, what it belongs to, and what it does without tying identity to a specific cloud provider or tool.
+Repository names should describe what the repository is, what it belongs to, and what it does without tying identity to a specific cloud provider or tool.
 This standard ensures clarity, consistency, and long-term maintainability.

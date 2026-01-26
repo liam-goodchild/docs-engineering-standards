@@ -141,7 +141,7 @@ stages:
 |---------|-------|-------------|
 | Branch trigger | `none` | Pipeline does not run on direct commits |
 | PR trigger | `main` | Pipeline runs on pull requests to main |
-| Path exclusion | `**/README.md` | README changes do not trigger validation |
+| Path exclusion | `**/README.md` | Readme changes do not trigger validation |
 
 ### Parameters
 

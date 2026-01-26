@@ -154,7 +154,7 @@ stages:
 | Setting | Value | Description |
 |---------|-------|-------------|
 | Branch trigger | `main` | Pipeline runs on commits to main branch |
-| Path exclusion | `**/README.md` | README changes do not trigger deployments |
+| Path exclusion | `**/README.md` | Readme changes do not trigger deployments |
 | PR trigger | `none` | Pull requests do not trigger this pipeline |
 
 ### Parameters
