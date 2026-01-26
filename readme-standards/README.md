@@ -2,11 +2,11 @@
 
 ## Purpose
 
-This document defines the standard format for readme files within engineering standards documentation.
+This document defines the standard format for readme files across all repositories.
 The goal is to ensure consistency, readability, and completeness across all documentation.
 
 This standard:
-- Provides a consistent structure for all standards documents
+- Provides a consistent structure for all repository documentation
 - Ensures key information is always present and easy to find
 - Makes documentation maintainable and predictable
 - Improves onboarding by providing familiar patterns
@@ -214,4 +214,4 @@ This standard:
 
 ## Summary
 
-All readme files in this documentation repository should follow this standard format. Consistency in structure makes documentation easier to navigate, maintain, and understand.
+All readme files should follow this standard format. Consistency in structure makes documentation easier to navigate, maintain, and understand.
