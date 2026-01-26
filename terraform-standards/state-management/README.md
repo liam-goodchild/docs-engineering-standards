@@ -75,7 +75,7 @@ The CI/CD pipelines use the following variables for state management:
 | `backendResourceGroupName` | Resource group containing the storage account |
 | `backendStorageAccountName` | Storage account for state files |
 | `backendContainerName` | Container name (set to repository name) |
-| `backendKey` | State file name (default: `terraform.tfstate`) |
+| `backendKey` | State filename (default: `terraform.tfstate`) |
 
 ---
 

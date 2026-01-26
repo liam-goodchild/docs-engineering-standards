@@ -1,8 +1,8 @@
-# README Standards
+# Readme Standards
 
 ## Purpose
 
-This document defines the standard format for README files within engineering standards documentation.
+This document defines the standard format for readme files within engineering standards documentation.
 The goal is to ensure consistency, readability, and completeness across all documentation.
 
 This standard:
@@ -15,7 +15,7 @@ This standard:
 
 ## Required Sections
 
-Every README must include the following sections in this order:
+Every readme must include the following sections in this order:
 
 ### 1. Title
 
@@ -96,7 +96,7 @@ Include these sections when relevant:
 - Use GitHub-flavoured Markdown
 - Use horizontal rules (`---`) between major sections
 - Keep line lengths reasonable for readability
-- Use blank lines to separate paragraphs
+- Use empty lines to separate paragraphs
 
 ### Headings
 
@@ -114,7 +114,7 @@ Include these sections when relevant:
 ### Code
 
 - Use fenced code blocks with language identifiers
-- Use inline code for file names, commands, and values
+- Use inline code for filenames, commands, and values
 
 ```markdown
 Use `backticks` for inline code
@@ -214,4 +214,4 @@ This standard:
 
 ## Summary
 
-All README files in this documentation repository should follow this standard format. Consistency in structure makes documentation easier to navigate, maintain, and understand.
+All readme files in this documentation repository should follow this standard format. Consistency in structure makes documentation easier to navigate, maintain, and understand.
