@@ -1,0 +1,32 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - '**/*.README.md'
+      - 'README.md'
+
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: liam-goodchild/pipeline-engineering-templates
+      endpoint: liam-goodchild
+      ref: refs/heads/main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  # Stage 1: Git Versioning
+  - stage: Versioning
+    displayName: 'Git Versioning'
+    jobs:
+      - job: GitVersioning
+        displayName: 'Create Git Tag'
+        steps:
+          - template: versioning/git-versioning.yaml@templates
+            parameters:
+              defaultAction: patch
+              defaultBranch: main
