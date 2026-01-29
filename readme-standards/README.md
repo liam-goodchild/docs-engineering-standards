@@ -59,7 +59,28 @@ This standard:
 - Use descriptive section headings
 - Break complex topics into subsections using `###`
 
-### 4. Summary
+### 4. Terraform Documentation
+
+Include a documentation injection block that will be populated by terraform-docs:
+
+```markdown
+---
+
+## Terraform Documentation
+
+<!-- prettier-ignore-start -->
+<!-- textlint-disable -->
+<!-- BEGIN_TF_DOCS -->
+<!-- END_TF_DOCS -->
+<!-- textlint-enable -->
+<!-- prettier-ignore-end -->
+```
+
+- Place this section after the main content sections
+- The `BEGIN_TF_DOCS` and `END_TF_DOCS` comments mark where terraform-docs will inject auto-generated documentation
+- The surrounding comments disable formatters and linters to preserve the generated content
+
+### 5. Summary
 
 ```markdown
 ---
@@ -170,6 +191,17 @@ This standard:
 ### [Subsection]
 
 [Content]
+
+---
+
+## Terraform Documentation
+
+<!-- prettier-ignore-start -->
+<!-- textlint-disable -->
+<!-- BEGIN_TF_DOCS -->
+<!-- END_TF_DOCS -->
+<!-- textlint-enable -->
+<!-- prettier-ignore-end -->
 
 ---
 
