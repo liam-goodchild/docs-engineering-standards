@@ -6,6 +6,7 @@ This document defines the standard format for readme files across all repositori
 The goal is to ensure consistency, readability, and completeness across all documentation.
 
 This standard:
+
 - Provides a consistent structure for all repository documentation
 - Ensures key information is always present and easy to find
 - Makes documentation maintainable and predictable
@@ -36,6 +37,7 @@ This document defines the standard for [topic].
 The goal is to [primary objective].
 
 This standard:
+
 - [Benefit 1]
 - [Benefit 2]
 - [Benefit 3]
@@ -99,14 +101,14 @@ Include a documentation injection block that will be populated by terraform-docs
 
 Include these sections when relevant:
 
-| Section | When to Include |
-|---------|-----------------|
-| Examples | When practical demonstrations aid understanding |
-| Configuration | When settings or parameters need documentation |
-| Usage | When step-by-step instructions are needed |
-| Migration Guidance | When transitioning from old patterns |
-| Governance | When compliance or approval processes apply |
-| Quick Reference | When a summary table aids quick lookup |
+| Section            | When to Include                                 |
+| ------------------ | ----------------------------------------------- |
+| Examples           | When practical demonstrations aid understanding |
+| Configuration      | When settings or parameters need documentation  |
+| Usage              | When step-by-step instructions are needed       |
+| Migration Guidance | When transitioning from old patterns            |
+| Governance         | When compliance or approval processes apply     |
+| Quick Reference    | When a summary table aids quick lookup          |
 
 ---
 
@@ -149,7 +151,7 @@ Use `backticks` for inline code
 
 ```markdown
 | Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Value 1  | Value 2  | Value 3  |
 ```
 
@@ -172,6 +174,7 @@ This document defines the standard for [topic].
 The goal is to [primary objective].
 
 This standard:
+
 - [Benefit 1]
 - [Benefit 2]
 - [Benefit 3]
@@ -236,6 +239,7 @@ This document defines the standard for Terraform state management.
 The goal is to ensure secure, consistent, and recoverable state storage across all infrastructure deployments.
 
 This standard:
+
 - Ensures state files are stored securely in Azure Storage
 - Provides environment isolation through separate storage accounts
 - Enables state locking to prevent concurrent modifications

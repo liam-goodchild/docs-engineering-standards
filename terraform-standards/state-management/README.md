@@ -6,6 +6,7 @@ This document defines the standard for Terraform state storage and management.
 The goal is to ensure secure, consistent, and recoverable state storage across all infrastructure deployments.
 
 This standard:
+
 - Centralises state storage in Azure Blob Storage
 - Provides environment isolation through separate storage accounts
 - Enables automatic state locking to prevent concurrent modifications
@@ -19,10 +20,10 @@ Terraform state must be stored in Azure Blob Storage, never locally. Azure Blob 
 
 ### Storage Accounts
 
-| Environment | Resource Group | Storage Account |
-|-------------|----------------|-----------------|
-| Dev | `sh-mgmt-dev-uks-tf-rg-01` | `shmgmtdevukstfst01` |
-| Prod | `sh-mgmt-prd-uks-tf-rg-01` | `shmgmtprdukstfst01` |
+| Environment | Resource Group             | Storage Account      |
+| ----------- | -------------------------- | -------------------- |
+| Dev         | `sh-mgmt-dev-uks-tf-rg-01` | `shmgmtdevukstfst01` |
+| Prod        | `sh-mgmt-prd-uks-tf-rg-01` | `shmgmtprdukstfst01` |
 
 ### Container Naming
 
@@ -57,10 +58,10 @@ Delete locks are applied at the resource group level to prevent accidental or ma
 
 Storage accounts are currently accessible publicly. Future improvements planned:
 
-| Improvement | Status |
-|-------------|--------|
+| Improvement                                                        | Status  |
+| ------------------------------------------------------------------ | ------- |
 | Add agent firewall IPs to storage account firewall on pipeline run | Planned |
-| Enable blob versioning for state history and recovery | Planned |
+| Enable blob versioning for state history and recovery              | Planned |
 
 ---
 
@@ -70,12 +71,12 @@ Storage accounts are currently accessible publicly. Future improvements planned:
 
 The CI/CD pipelines use the following variables for state management:
 
-| Variable | Description |
-|----------|-------------|
-| `backendResourceGroupName` | Resource group containing the storage account |
-| `backendStorageAccountName` | Storage account for state files |
-| `backendContainerName` | Container name (set to repository name) |
-| `backendKey` | State filename (default: `terraform.tfstate`) |
+| Variable                    | Description                                   |
+| --------------------------- | --------------------------------------------- |
+| `backendResourceGroupName`  | Resource group containing the storage account |
+| `backendStorageAccountName` | Storage account for state files               |
+| `backendContainerName`      | Container name (set to repository name)       |
+| `backendKey`                | State filename (default: `terraform.tfstate`) |
 
 ---
 

@@ -6,6 +6,7 @@ This document defines the standard for Continuous Integration (CI) pipelines.
 The goal is to provide a consistent approach to validating infrastructure changes through linting, documentation generation, and plan verification before merging.
 
 This standard:
+
 - Ensures code quality through automated linting and security scanning
 - Maintains up-to-date Terraform documentation automatically
 - Validates infrastructure changes with Terraform Plan before merge
@@ -40,7 +41,7 @@ pr:
       - main
   paths:
     exclude:
-      - '**/README.md'
+      - "**/README.md"
 
 resources:
   repositories:
@@ -61,7 +62,7 @@ parameters:
   - name: additionalTfVars
     displayName: Additional Terraform Variables
     type: string
-    default: ' '
+    default: " "
 
 variables:
   # Container, Service Connection & tfvars
@@ -82,10 +83,10 @@ variables:
 stages:
   # Stage 1: Linting
   - stage: Linting
-    displayName: 'Linting & Validation'
+    displayName: "Linting & Validation"
     jobs:
       - job: SuperLinter
-        displayName: 'Super-Linter'
+        displayName: "Super-Linter"
         steps:
           - template: validation/linting.yaml@templates
             parameters:
@@ -94,12 +95,12 @@ stages:
 
   # Stage 2: Documentation
   - stage: Documentation
-    displayName: 'Terraform Documentation'
+    displayName: "Terraform Documentation"
     dependsOn: Linting
     condition: succeeded()
     jobs:
       - job: TerraformDocs
-        displayName: 'Generate Terraform Docs'
+        displayName: "Generate Terraform Docs"
         steps:
           - template: documentation/tf-documentation.yaml@templates
             parameters:
@@ -108,12 +109,12 @@ stages:
 
   # Stage 3: Terraform Plan
   - stage: Plan
-    displayName: 'Terraform Plan'
+    displayName: "Terraform Plan"
     dependsOn: Documentation
     condition: succeeded()
     jobs:
       - job: TerraformPlan
-        displayName: 'Terraform Plan'
+        displayName: "Terraform Plan"
         steps:
           - checkout: self
           - template: terraform/terraform-cicd.yaml@templates
@@ -137,36 +138,36 @@ stages:
 
 ### Triggers
 
-| Setting | Value | Description |
-|---------|-------|-------------|
-| Branch trigger | `none` | Pipeline does not run on direct commits |
-| PR trigger | `main` | Pipeline runs on pull requests to main |
+| Setting        | Value          | Description                              |
+| -------------- | -------------- | ---------------------------------------- |
+| Branch trigger | `none`         | Pipeline does not run on direct commits  |
+| PR trigger     | `main`         | Pipeline runs on pull requests to main   |
 | Path exclusion | `**/README.md` | Readme changes do not trigger validation |
 
 ### Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `environment` | string | - | Target environment for plan validation (Dev or Prod) |
-| `additionalTfVars` | string | `' '` | Additional Terraform variables to pass |
+| Parameter          | Type   | Default | Description                                          |
+| ------------------ | ------ | ------- | ---------------------------------------------------- |
+| `environment`      | string | -       | Target environment for plan validation (Dev or Prod) |
+| `additionalTfVars` | string | `' '`   | Additional Terraform variables to pass               |
 
 ### Variables to Configure
 
 The following placeholders must be replaced with repository-specific values:
 
-| Variable | Description |
-|----------|-------------|
-| `backendContainerName` | Storage container name for Terraform state |
+| Variable                | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| `backendContainerName`  | Storage container name for Terraform state         |
 | `serviceConnectionName` | Azure DevOps service connection for plan execution |
 
 ### Environment-Specific Variables
 
 State management variables are automatically configured based on the selected environment:
 
-| Environment | Resource Group | Storage Account | Environment Code |
-|-------------|----------------|-----------------|------------------|
-| Dev | `sh-mgmt-dev-uks-tf-rg-01` | `shmgmtdevukstfst01` | `dev` |
-| Prod | `sh-mgmt-prd-uks-tf-rg-01` | `shmgmtprdukstfst01` | `prd` |
+| Environment | Resource Group             | Storage Account      | Environment Code |
+| ----------- | -------------------------- | -------------------- | ---------------- |
+| Dev         | `sh-mgmt-dev-uks-tf-rg-01` | `shmgmtdevukstfst01` | `dev`            |
+| Prod        | `sh-mgmt-prd-uks-tf-rg-01` | `shmgmtprdukstfst01` | `prd`            |
 
 ---
 
@@ -210,14 +211,14 @@ infra/
 
 ## CI vs CD Pipeline Comparison
 
-| Aspect | CI Pipeline | CD Pipeline |
-|--------|-------------|-------------|
-| Trigger | Pull requests | Main branch commits |
-| Linting | Yes | No |
-| Documentation | Yes | No |
-| Terraform Plan | Yes | Yes |
-| Terraform Apply | No | Yes |
-| Git Versioning | No | Yes (optional) |
+| Aspect          | CI Pipeline   | CD Pipeline         |
+| --------------- | ------------- | ------------------- |
+| Trigger         | Pull requests | Main branch commits |
+| Linting         | Yes           | No                  |
+| Documentation   | Yes           | No                  |
+| Terraform Plan  | Yes           | Yes                 |
+| Terraform Apply | No            | Yes                 |
+| Git Versioning  | No            | Yes (optional)      |
 
 ---
 
