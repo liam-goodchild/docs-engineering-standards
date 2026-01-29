@@ -6,6 +6,7 @@ This document defines the standard for Continuous Deployment (CD) pipelines.
 The goal is to provide a consistent, repeatable approach to deploying infrastructure using Terraform with proper state management, environment separation, and versioning.
 
 This standard:
+
 - Ensures consistent deployment patterns across all infrastructure repositories
 - Provides environment-specific configuration management
 - Enables automated Git versioning based on commit messages
@@ -38,7 +39,7 @@ trigger:
       - main
   paths:
     exclude:
-      - '**/README.md'
+      - "**/README.md"
 
 pr: none
 
@@ -61,7 +62,7 @@ parameters:
   - name: additionalTfVars
     displayName: Additional Terraform Variables
     type: string
-    default: ' '
+    default: " "
   - name: enableVersioning
     displayName: Enable Git Versioning
     type: boolean
@@ -86,10 +87,10 @@ variables:
 stages:
   # Stage 1: Terraform Plan
   - stage: Plan
-    displayName: 'Terraform Plan'
+    displayName: "Terraform Plan"
     jobs:
       - job: TerraformPlan
-        displayName: 'Terraform Plan'
+        displayName: "Terraform Plan"
         steps:
           - checkout: self
           - template: terraform/terraform-cicd.yaml@templates
@@ -104,17 +105,17 @@ stages:
               globalTfvars: $(globalTfvars)
               additionalCommandOptions: ${{ parameters.additionalTfVars }}
               publishPlan: true
-              planArtifactName: 'tfplan-${{ parameters.environment }}'
+              planArtifactName: "tfplan-${{ parameters.environment }}"
               ensureBackendContainer: true
 
   # Stage 2: Terraform Apply
   - stage: Apply
-    displayName: 'Terraform Apply'
+    displayName: "Terraform Apply"
     dependsOn: Plan
     condition: succeeded()
     jobs:
       - job: TerraformApply
-        displayName: 'Terraform Apply'
+        displayName: "Terraform Apply"
         steps:
           - checkout: self
           - template: terraform/terraform-cicd.yaml@templates
@@ -132,12 +133,12 @@ stages:
 
   # Stage 3: Git Versioning
   - stage: Versioning
-    displayName: 'Git Versioning'
+    displayName: "Git Versioning"
     dependsOn: Apply
     condition: and(succeeded(), eq('${{ parameters.enableVersioning }}', 'true'))
     jobs:
       - job: GitVersioning
-        displayName: 'Create Git Tag'
+        displayName: "Create Git Tag"
         steps:
           - template: versioning/git-versioning.yaml@templates
             parameters:
@@ -151,37 +152,37 @@ stages:
 
 ### Triggers
 
-| Setting | Value | Description |
-|---------|-------|-------------|
-| Branch trigger | `main` | Pipeline runs on commits to main branch |
-| Path exclusion | `**/README.md` | Readme changes do not trigger deployments |
-| PR trigger | `none` | Pull requests do not trigger this pipeline |
+| Setting        | Value          | Description                                |
+| -------------- | -------------- | ------------------------------------------ |
+| Branch trigger | `main`         | Pipeline runs on commits to main branch    |
+| Path exclusion | `**/README.md` | Readme changes do not trigger deployments  |
+| PR trigger     | `none`         | Pull requests do not trigger this pipeline |
 
 ### Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `environment` | string | - | Target environment (Dev or Prod) |
-| `additionalTfVars` | string | `' '` | Additional Terraform variables to pass |
-| `enableVersioning` | boolean | `true` | Enable Git tag creation after successful apply |
+| Parameter          | Type    | Default | Description                                    |
+| ------------------ | ------- | ------- | ---------------------------------------------- |
+| `environment`      | string  | -       | Target environment (Dev or Prod)               |
+| `additionalTfVars` | string  | `' '`   | Additional Terraform variables to pass         |
+| `enableVersioning` | boolean | `true`  | Enable Git tag creation after successful apply |
 
 ### Variables to Configure
 
 The following placeholders must be replaced with repository-specific values:
 
-| Variable | Description |
-|----------|-------------|
-| `backendContainerName` | Storage container name for Terraform state |
+| Variable                | Description                                    |
+| ----------------------- | ---------------------------------------------- |
+| `backendContainerName`  | Storage container name for Terraform state     |
 | `serviceConnectionName` | Azure DevOps service connection for deployment |
 
 ### Environment-Specific Variables
 
 State management variables are automatically configured based on the selected environment:
 
-| Environment | Resource Group | Storage Account | Environment Code |
-|-------------|----------------|-----------------|------------------|
-| Dev | `sh-mgmt-dev-uks-tf-rg-01` | `shmgmtdevukstfst01` | `dev` |
-| Prod | `sh-mgmt-prd-uks-tf-rg-01` | `shmgmtprdukstfst01` | `prd` |
+| Environment | Resource Group             | Storage Account      | Environment Code |
+| ----------- | -------------------------- | -------------------- | ---------------- |
+| Dev         | `sh-mgmt-dev-uks-tf-rg-01` | `shmgmtdevukstfst01` | `dev`            |
+| Prod        | `sh-mgmt-prd-uks-tf-rg-01` | `shmgmtprdukstfst01` | `prd`            |
 
 ---
 
@@ -212,6 +213,7 @@ infra/
 ## Git Versioning
 
 When enabled, the versioning stage creates Git tags based on:
+
 - Commit message keywords (major, minor, patch)
 - Branch name patterns
 - Default action: `patch` increment

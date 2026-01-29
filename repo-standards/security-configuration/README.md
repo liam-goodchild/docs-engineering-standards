@@ -6,6 +6,7 @@ This document defines the standard for GitHub repository security settings.
 The goal is to ensure all repositories have consistent security monitoring and vulnerability detection enabled.
 
 This standard:
+
 - Enables proactive vulnerability detection across all repositories
 - Provides automated dependency security updates
 - Detects secrets accidentally committed to repositories
@@ -17,11 +18,11 @@ This standard:
 
 All repositories must have the following security features enabled:
 
-| Feature | Description |
-|---------|-------------|
-| Security Advisories | Track and manage security vulnerabilities in the repository |
-| Dependabot Alerts | Automatic alerts for vulnerable dependencies |
-| Code Scanning Alerts | Static analysis to detect security vulnerabilities in code |
+| Feature                | Description                                                 |
+| ---------------------- | ----------------------------------------------------------- |
+| Security Advisories    | Track and manage security vulnerabilities in the repository |
+| Dependabot Alerts      | Automatic alerts for vulnerable dependencies                |
+| Code Scanning Alerts   | Static analysis to detect security vulnerabilities in code  |
 | Secret Scanning Alerts | Detection of accidentally committed secrets and credentials |
 
 ---
